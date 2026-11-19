@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SD Inklusi Dewi Sartika Bandung — Design System & Brand Guidelines (v1.0.0)</title>
+  <!-- Google Fonts: Montserrat (Display/Headings), Inter (Body/UI), JetBrains Mono (Tokens/Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <!-- Client-side DOCX Generator Library (docx v8.5.0) -->
+  <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+  <style>
+    /* ==========================================================================
+       1. W3C DESIGN TOKENS & CSS CUSTOM PROPERTIES (SD INKLUSI DEWI SARTIKA v1.0.0)
+       ========================================================================== */
+    :root {
+      --color-brand-primary-50: #F0F8FF;
+      --color-brand-primary-100: #E0F1FE;
+      --color-brand-primary-200: #BAE2FD;
+      --color-brand-primary-400: #36B1FA;
+      --color-brand-primary-500: #0077CC;
+      --color-brand-primary-700: #004D87;
+      --color-brand-primary-900: #00294A;
+
+      --color-brand-secondary-50: #FFFBEB;
+      --color-brand-secondary-200: #FDE68A;
+      --color-brand-secondary-500: #FFC72C;
+      --color-brand-secondary-700: #B47804;
+
+      --color-brand-accent-50: #FEF2F2;
+      --color-brand-accent-500: #E53935;
+      --color-brand-accent-700: #991B1B;
+
+      --color-neutral-white: #FFFFFF;
+      --color-neutral-surface: #F8FAFC;
+      --color-neutral-surface-alt: #F1F5F9;
+      --color-neutral-border: #E2E8F0;
+      --color-neutral-muted: #64748B;
+      --color-neutral-body: #334155;
+      --color-neutral-ink: #0F172A;
+
+      --font-heading: 'Montserrat', 'Segoe UI', sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+      --shadow-sheet: 0 12px 36px -6px rgba(15, 23, 42, 0.12);
+      --shadow-card: 0 6px 20px -4px rgba(0, 119, 204, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #E2E8F0;
+      color: var(--color-neutral-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       2. FLOATING COMPILER TOOLBAR (SCREEN ONLY)
+       ========================================================================== */
+    .compiler-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--color-brand-primary-500);
+      padding: 12px 24px;
+      color: #FFFFFF;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .toolbar-badge {
+      background: var(--color-brand-secondary-500);
+      color: var(--color-neutral-ink);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+
+    .toolbar-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      color: #FFFFFF;
+    }
+
+    .toolbar-sub {
+      font-size: 11.5px;
+      color: #94A3B8;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-group {
+      display: inline-flex;
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      padding: 3px;
+      margin-right: 6px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: #CBD5E1;
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--color-brand-primary-500);
+      color: #FFFFFF;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
+    .btn-docx-id {
+      background: var(--color-brand-primary-500);
+      color: #FFFFFF;
+    }
+
+    .btn-docx-en {
+      background: var(--color-brand-secondary-500);
+      color: var(--color-neutral-ink);
+    }
+
+    .btn-pdf {
+      background: var(--color-brand-accent-500);
+      color: #FFFFFF;
+    }
+
+    .status-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 24px;
+      z-index: 2000;
+      background: var(--color-neutral-ink);
+      color: #FFFFFF;
+      border-left: 4px solid var(--color-brand-secondary-500);
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+    }
+
+    .status-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       3. A4 DOCUMENT SHEET LAYOUT (SCREEN & PRINT FIDELITY)
+       ========================================================================== */
+    .document-stream {
+      max-width: 210mm;
+      margin: 28px auto 48px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .a4-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--color-neutral-white);
+      box-shadow: var(--shadow-sheet);
+      padding: 14mm 15mm 15mm 15mm;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 4px;
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 7px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--color-neutral-border);
+      font-size: 9.8px;
+      color: var(--color-neutral-muted);
+    }
+
+    .sheet-header strong {
+      color: var(--color-brand-primary-700);
+      font-family: var(--font-heading);
+    }
+
+    .sheet-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      margin-top: 14px;
+      border-top: 1px solid var(--color-neutral-border);
+      font-size: 9.2px;
+      color: var(--color-neutral-muted);
+    }
+
+    /* ==========================================================================
+       4. COVER HERO BANNER & TYPOGRAPHY ELEMENTS
+       ========================================================================== */
+    .cover-hero {
+      background: linear-gradient(135deg, #0077CC 0%, #004D87 100%);
+      border-radius: 16px;
+      padding: 22px 24px 20px 24px;
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 6px solid var(--color-brand-secondary-500);
+      margin-bottom: 14px;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 144px;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .cover-kicker {
+      display: inline-block;
+      background: rgba(255, 199, 44, 0.18);
+      border: 1px solid rgba(255, 199, 44, 0.5);
+      color: var(--color-brand-secondary-500);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .cover-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 22.5px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+    }
+
+    .cover-desc {
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: #E0F1FE;
+    }
+
+    .emblem-badge-box {
+      background: #FFFFFF;
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+      border: 2px solid var(--color-brand-secondary-500);
+    }
+
+    .emblem-img {
+      display: block;
+      object-fit: contain;
+    }
+
+    .emblem-caption {
+      margin-top: 5px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 8px;
+      color: var(--color-neutral-ink);
+      text-align: center;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+    }
+
+    .sec-title-bar {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border-bottom: 2px solid var(--color-brand-primary-500);
+      padding-bottom: 5px;
+      margin: 12px 0 8px 0;
+    }
+
+    .sec-num {
+      background: var(--color-brand-primary-500);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 10.5px;
+      padding: 2.5px 7.5px;
+      border-radius: 6px;
+    }
+
+    .sec-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14.5px;
+      color: var(--color-neutral-ink);
+    }
+
+    .lead-p {
+      font-size: 11px;
+      color: var(--color-neutral-body);
+      margin-bottom: 9px;
+      line-height: 1.5;
+    }
+
+    /* Tables */
+    table.ds-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      font-size: 10.2px;
+    }
+
+    table.ds-table th {
+      background: var(--color-brand-primary-500);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      text-align: left;
+      padding: 6px 8px;
+      border: 1px solid var(--color-brand-primary-500);
+    }
+
+    table.ds-table td {
+      padding: 5.5px 8px;
+      border: 1px solid var(--color-neutral-border);
+      vertical-align: middle;
+      color: var(--color-neutral-body);
+    }
+
+    table.ds-table tr:nth-child(even) td {
+      background: var(--color-neutral-surface);
+    }
+
+    code.tok {
+      font-family: var(--font-mono);
+      font-size: 9.4px;
+      background: #F1F5F9;
+      color: #004D87;
+      padding: 1.5px 4.5px;
+      border-radius: 4px;
+      border: 1px solid #E2E8F0;
+    }
+
+    /* Visi Misi & Curriculum Cards */
+    .visi-box {
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+      border: 1.5px solid var(--color-brand-secondary-500);
+      border-left: 6px solid var(--color-brand-secondary-500);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+
+    .visi-kicker {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: #92400E;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .visi-quote {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--color-neutral-ink);
+      line-height: 1.45;
+      font-style: italic;
+    }
+
+    .misi-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .misi-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      background: var(--color-neutral-surface);
+      border: 1px solid var(--color-neutral-border);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 10.6px;
+      color: var(--color-neutral-body);
+    }
+
+    .misi-num {
+      background: var(--color-brand-primary-500);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 9.5px;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .kurikulum-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .kur-card {
+      border: 1px solid var(--color-neutral-border);
+      border-radius: 12px;
+      padding: 11px 13px;
+      background: #FFFFFF;
+      box-shadow: var(--shadow-card);
+    }
+
+    .kur-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--color-brand-primary-100);
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    .kur-card-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--color-brand-primary-700);
+    }
+
+    .pill-tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill-tag {
+      background: var(--color-brand-primary-50);
+      border: 1px solid var(--color-brand-primary-200);
+      color: var(--color-brand-primary-700);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 10.2px;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .pill-tag.gold {
+      background: var(--color-brand-secondary-50);
+      border-color: var(--color-brand-secondary-500);
+      color: var(--color-neutral-ink);
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-left: 4px solid var(--color-brand-primary-500);
+      background: var(--color-brand-primary-50);
+      padding: 9px 13px;
+      border-radius: 0 10px 10px 0;
+      margin: 8px 0;
+      font-size: 10.4px;
+    }
+
+    .callout.gold {
+      border-left-color: var(--color-brand-secondary-500);
+      background: var(--color-brand-secondary-50);
+    }
+
+    .callout.red {
+      border-left-color: var(--color-brand-accent-500);
+      background: var(--color-brand-accent-50);
+    }
+
+    .callout-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 10.5px;
+      color: var(--color-neutral-ink);
+      margin-bottom: 3px;
+    }
+
+    /* Emblem Showcase Grid */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+      margin: 8px 0 10px 0;
+    }
+
+    .logo-card {
+      border: 1px solid var(--color-neutral-border);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo-stage {
+      height: 86px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 8px;
+      margin-bottom: 7px;
+      border: 1px dashed #CBD5E1;
+    }
+
+    .logo-stage.light { background: #FFFFFF; }
+    .logo-stage.tint { background: #F0F8FF; }
+    .logo-stage.dark { background: #0F172A; border-style: solid; border-color: #0F172A; }
+    .logo-stage.gold { background: #FFFBEB; }
+
+    .lockup-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .lockup-main {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 12.5px;
+      letter-spacing: -0.01em;
+    }
+
+    .lockup-sub {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    .logo-meta-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 10.6px;
+      color: var(--color-neutral-ink);
+    }
+
+    .logo-meta-desc {
+      font-size: 9.4px;
+      color: var(--color-neutral-muted);
+      margin-top: 2px;
+    }
+
+    /* Color Swatches */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 9px;
+      margin: 8px 0 12px 0;
+    }
+
+    .swatch-card {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--color-neutral-border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .swatch-fill {
+      height: 62px;
+      padding: 7px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+    }
+
+    .swatch-info {
+      padding: 7px;
+      background: #FFFFFF;
+      font-size: 9.2px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--color-neutral-ink);
+      margin-bottom: 2px;
+    }
+
+    /* Typography Specimen List */
+    .type-row {
+      display: grid;
+      grid-template-columns: 155px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 5.5px 0;
+      border-bottom: 1px solid var(--color-neutral-border);
+    }
+
+    .type-meta {
+      font-size: 9.2px;
+      color: var(--color-neutral-muted);
+    }
+
+    .type-meta strong {
+      display: block;
+      color: var(--color-neutral-ink);
+      font-family: var(--font-heading);
+      font-size: 10px;
+    }
+
+    /* Website Wireframe Blueprint */
+    .wireframe-box {
+      border: 1.5px solid #94A3B8;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #FFFFFF;
+      margin: 6px 0 10px 0;
+    }
+
+    .wf-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 12px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 9.5px;
+    }
+
+    .wf-hero {
+      background: linear-gradient(90deg, #F0F8FF 0%, #FFFFFF 100%);
+      padding: 11px 12px;
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .wf-trust {
+      background: #0077CC;
+      color: #FFFFFF;
+      padding: 7px 12px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .wf-cards {
+      padding: 10px 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      background: #F8FAFC;
+    }
+
+    .wf-card-item {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 9px;
+      padding: 7px;
+      font-size: 9px;
+    }
+
+    .wf-footer {
+      background: #0F172A;
+      color: #E2E8F0;
+      padding: 8px 12px;
+      font-size: 9px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Code Block */
+    .code-panel {
+      background: #0F172A;
+      color: #E2E8F0;
+      border-radius: 9px;
+      padding: 8px 11px;
+      font-family: var(--font-mono);
+      font-size: 8.2px;
+      line-height: 1.38;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-left: 4px solid var(--color-brand-primary-500);
+      margin-bottom: 8px;
+    }
+
+    .code-label {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 10px;
+      color: var(--color-brand-primary-700);
+      margin: 5px 0 3px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copy-mini-btn {
+      background: #E0F1FE;
+      color: #004D87;
+      border: 1px solid #BAE2FD;
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 9px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Language Visibility Modes */
+    body.mode-en .lang-id { display: none !important; }
+    body.mode-id .lang-en { display: none !important; }
+
+    /* ==========================================================================
+       5. PRINT / PDF COMPILATION RULES (@media print)
+       ========================================================================== */
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .compiler-toolbar,
+      .status-toast,
+      .copy-mini-btn {
+        display: none !important;
+      }
+      .document-stream {
+        margin: 0 !important;
+        max-width: 100% !important;
+        gap: 0 !important;
+      }
+      .a4-sheet {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        page-break-after: always;
+        break-after: page;
+        margin: 0 !important;
+      }
+      .a4-sheet:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Master Vector Backup of sd_dewi_sartika_logo.png (used if local PNG file path is unavailable in isolated preview) -->
+  <svg id="master-emblem-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" style="display:none;">
+    <defs>
+      <path id="ribbon-text-arc" d="M 86,156 Q 200,82 314,156" fill="none" />
+    </defs>
+    <polygon points="200,12 384,150 316,384 84,384 16,150" fill="#0077CC" stroke="#0F172A" stroke-width="6" stroke-linejoin="round" />
+    <polygon points="36,162 84,132 94,156 68,176 76,158" fill="#FFC72C" stroke="#0F172A" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="364,162 316,132 306,156 332,176 324,158" fill="#FFC72C" stroke="#0F172A" stroke-width="4" stroke-linejoin="round" />
+    <path d="M 74,142 Q 200,62 326,142 L 314,170 Q 200,96 86,170 Z" fill="#FFC72C" stroke="#0F172A" stroke-width="4.5" stroke-linejoin="round" />
+    <text font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="16.2" fill="#0F172A" letter-spacing="0.6">
+      <textPath href="#ribbon-text-arc" startOffset="50%" text-anchor="middle">YAYASAN RADEN DEWI SARTIKA</textPath>
+    </text>
+    <path d="M 118,342 C 88,322 68,296 62,276 C 88,276 116,288 132,308 Z" fill="#E53935" />
+    <path d="M 282,342 C 312,322 332,296 338,276 C 312,276 284,288 268,308 Z" fill="#E53935" />
+    <path d="M 136,330 C 114,290 118,252 132,230 C 154,250 168,282 172,318 Z" fill="#E53935" />
+    <path d="M 264,330 C 286,290 282,252 268,230 C 246,250 232,282 228,318 Z" fill="#E53935" />
+    <path d="M 162,314 C 164,268 182,236 200,222 C 218,236 236,268 238,314 Z" fill="#E53935" />
+    <rect x="114" y="332" width="172" height="13" rx="3" fill="#E53935" />
+    <rect x="124" y="322" width="152" height="10" fill="#FFC72C" />
+    <rect x="146" y="312" width="108" height="11" fill="#FFC72C" />
+    <path d="M 162,313 A 38,36 0 0,1 238,313 Z" fill="#FFC72C" />
+    <rect x="187" y="178" width="26" height="106" fill="#FFC72C" />
+    <polygon points="176,172 224,172 215,180 185,180" fill="#E53935" />
+    <path d="M 200,172 C 185,160 187,142 198,132 C 194,122 198,112 206,106 C 204,118 214,128 214,142 C 214,154 206,164 200,172 Z" fill="#E53935" />
+    <text x="200" y="328" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="22" fill="#0F172A">1884</text>
+    <text x="200" y="370" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="30" fill="#FFFFFF" letter-spacing="1.5">BANDUNG</text>
+  </svg>
+
+  <!-- Floating Action & Compiler Toolbar -->
+  <header class="compiler-toolbar">
+    <div class="toolbar-brand">
+      <span class="toolbar-badge">v1.0.0</span>
+      <div>
+        <div class="toolbar-title">SD Inklusi Dewi Sartika Bandung — Design System Compiler</div>
+        <div class="toolbar-sub">NPSN 20219596 • sd_dewi_sartika_logo.png • .DOCX &amp; .PDF Ready</div>
+      </div>
+    </div>
+    <div class="toolbar-actions">
+      <div class="lang-group" role="group" aria-label="Language Filter">
+        <button class="lang-btn active" onclick="setLangMode('both', this)">Bilingual (EN/ID)</button>
+        <button class="lang-btn" onclick="setLangMode('id', this)">Indonesia</button>
+        <button class="lang-btn" onclick="setLangMode('en', this)">English</button>
+      </div>
+      <button class="action-btn btn-docx-id" onclick="exportDocx('ID')">
+        <span>⬇ Download .DOCX (ID)</span>
+      </button>
+      <button class="action-btn btn-docx-en" onclick="exportDocx('EN')">
+        <span>⬇ Download .DOCX (EN)</span>
+      </button>
+      <button class="action-btn btn-pdf" onclick="exportPdf()">
+        <span>🖨 Compile &amp; Save .PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <div id="status-toast" class="status-toast" role="status" aria-live="polite"></div>
+
+  <!-- ==========================================================================
+       A4 COMPILED DOCUMENT PAGES (6 STRUCTURED SHEETS)
+       ========================================================================== -->
+  <main class="document-stream">
+
+    <!-- ==================== PAGE 1: COVER, SCHOOL IDENTITY & GOVERNANCE ==================== -->
+    <section class="a4-sheet">
+      <div>
+        <div class="sheet-header">
+          <span><strong>SD INKLUSI DEWI SARTIKA BANDUNG</strong> • DESIGN SYSTEM &amp; BRAND GUIDELINES</span>
+          <span>NPSN: 20219596 • https:/inklusi.sddewisartika.sch.id/ • v1.0.0</span>
+        </div>
+
+        <div class="cover-hero">
+          <div class="cover-grid">
+            <div>
+              <div class="cover-kicker">OFFICIAL DESIGN SYSTEM &amp; AGENTIC AI SPECIFICATION • v1.0.0</div>
+              <h1 class="cover-title">
+                <span class="lang-id">Sistem Desain &amp; Panduan Visual Resmi SD Inklusi Dewi Sartika Bandung<br/></span>
+                <span class="lang-en">SD Inklusi Dewi Sartika Bandung — Official Design System &amp; Visual Guidelines</span>
+              </h1>
+              <p class="cover-desc">
+                <span class="lang-id">Sumber kebenaran tunggal (<em>Single Source of Truth</em>) untuk rekayasa portal web resmi, tata kelola identitas merek Yayasan Raden Dewi Sartika, layanan pendidikan inklusif, serta input deterministik bagi Agentic AI.<br/></span>
+                <span class="lang-en">Authoritative Single Source of Truth for web product engineering, Yayasan Raden Dewi Sartika brand governance, inclusive education delivery, and deterministic Agentic AI execution.</span>
+              </p>
+            </div>
+            <div class="emblem-badge-box">
+              <div class="emblem-slot" data-size="108"></div>
+              <div class="emblem-caption">sd_dewi_sartika_logo.png<br/>YAYASAN RADEN DEWI SARTIKA</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Identitas Sekolah &amp; Kontrol Dokumen / </span>
+            <span class="lang-en">Official School Identity &amp; Document Control</span>
+          </h2>
+        </div>
+
+        <table class="ds-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Parameter / Atribut</th>
+              <th style="width: 70%;">Data Resmi Terverifikasi / Verified Specification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Nama Sekolah</strong></td>
+              <td><strong>SD Inklusi Dewi Sartika</strong> (Yayasan Raden Dewi Sartika)</td>
+            </tr>
+            <tr>
+              <td><strong>NPSN</strong></td>
+              <td><code class="tok">20219596</code></td>
+            </tr>
+            <tr>
+              <td><strong>Status Sekolah</strong></td>
+              <td><strong>Swasta</strong> (Layanan Pendidikan Inklusif)</td>
+            </tr>
+            <tr>
+              <td><strong>Alamat Lengkap</strong></td>
+              <td>Jl. Kautamaan Istri No. 12, Kelurahan Balong Gede, Kecamatan Regol, Kota Bandung, Jawa Barat</td>
+            </tr>
+            <tr>
+              <td><strong>Nomor Telepon</strong></td>
+              <td><code class="tok">022-4214290</code></td>
+            </tr>
+            <tr>
+              <td><strong>Portal Digital Resmi</strong></td>
+              <td><code class="tok">https:/inklusi.sddewisartika.sch.id/</code></td>
+            </tr>
+            <tr>
+              <td><strong>Aset Logo Kanonik</strong></td>
+              <td><code class="tok">sd_dewi_sartika_logo.png</code> (Perisai Segi Lima Yayasan Raden Dewi Sartika)</td>
+            </tr>
+            <tr>
+              <td><strong>Standar Rujukan</strong></td>
+              <td>W3C Design Tokens (DTCG v1.0), W3C WCAG 2.1 Level AA/AAA, Brad Frost Atomic Design, 8-Point Spatial Grid</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Pilar Desain Inklusif &amp; Karakter / </span>
+            <span class="lang-en">Inclusive Design &amp; Character Pillars</span>
+          </h2>
+        </div>
+
+        <table class="ds-table">
+          <thead>
+            <tr>
+              <th style="width: 28%;">Pillar / Pilar</th>
+              <th style="width: 36%;">Bahasa Indonesia</th>
+              <th style="width: 36%;">English</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Inclusive Accessibility</strong></td>
+              <td>Mendukung layanan pendidikan yang inklusif bagi seluruh peserta didik melalui antarmuka ramah akses dan kontras tinggi <strong>WCAG 2.1 AA/AAA</strong>.</td>
+              <td>Supports inclusive education for all learners through accessible UI patterns and <strong>WCAG 2.1 AA/AAA</strong> contrast compliance.</td>
+            </tr>
+            <tr>
+              <td><strong>2. Sundanese Character</strong></td>
+              <td>Menanamkan nilai budi pekerti luhur <strong>Cageur, Bageur, Bener, Pinter, tur Singer</strong> berlandaskan iman dan taqwa.</td>
+              <td>Instills noble Sundanese character values (<em>Cageur, Bageur, Bener, Pinter, tur Singer</em>) grounded in faith and devotion.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Academic Authority</strong></td>
+              <td>Menampilkan identitas resmi <strong>SD Inklusi Dewi Sartika</strong> (NPSN <code>20219596</code>) lewat dominasi <strong>Royal Blue (#0077CC)</strong>.</td>
+              <td>Establishes institutional trust for <strong>SD Inklusi Dewi Sartika</strong> (NPSN <code>20219596</code>) via dominant <strong>Royal Blue (#0077CC)</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>4. Torch of Knowledge</strong></td>
+              <td>Mewarisi semangat <em>Obor Ilmu</em> Raden Dewi Sartika (1884) melalui aksen <strong>Golden Yellow (#FFC72C)</strong> dan <strong>Vibrant Red (#E53935)</strong>.</td>
+              <td>Carries forward Raden Dewi Sartika's <em>Torch of Knowledge</em> (1884) with <strong>Golden Yellow (#FFC72C)</strong> &amp; <strong>Vibrant Red (#E53935)</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sheet-footer">
+        <span>SD Inklusi Dewi Sartika (NPSN: 20219596) • Jl. Kautamaan Istri No. 12, Kel. Balong Gede, Kec. Regol, Kota Bandung • Telp: 022-4214290</span>
+        <span>Page 1 of 6</span>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 2: VISI, MISI & KURIKULUM ==================== -->
+    <section class="a4-sheet">
+      <div>
+        <div class="sheet-header">
+          <span><strong>03 • VISI, MISI &amp; STRUKTUR KURIKULUM SEKOLAH</strong></span>
+          <span>SD Inklusi Dewi Sartika Bandung • v1.0.0</span>
+        </div>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Visi &amp; Misi Resmi SD Inklusi Dewi Sartika / </span>
+            <span class="lang-en">Official Vision &amp; Mission Statement</span>
+          </h2>
+        </div>
+
+        <div class="visi-box">
+          <div class="visi-kicker">VISI SEKOLAH • SD INKLUSI DEWI SARTIKA BANDUNG</div>
+          <div class="visi-quote">
+            “Tercapainya prestasi pembelajaran yang Cageur, Bageur, Bener, Pinter, tur Singer serta suka bekerjasama berlandaskan iman dan taqwa.”
+          </div>
+        </div>
+
+        <ul class="misi-list">
+          <li class="misi-item">
+            <span class="misi-num">1</span>
+            <span>Menyelenggarakan proses pembelajaran yang <strong>aktif, inovatif, dan berprestasi</strong>.</span>
+          </li>
+          <li class="misi-item">
+            <span class="misi-num">2</span>
+            <span>Menanamkan nilai karakter dan budi pekerti luhur (<strong>Cageur, Bageur, Bener, Pinter, Singer</strong>).</span>
+          </li>
+          <li class="misi-item">
+            <span class="misi-num">3</span>
+            <span>Membiasakan sikap <strong>gotong royong dan kerjasama</strong>.</span>
+          </li>
+          <li class="misi-item">
+            <span class="misi-num">4</span>
+            <span>Membangun landasan <strong>keimanan dan ketakwaan kepada Tuhan Yang Maha Esa</strong> dalam kehidupan sehari-hari.</span>
+          </li>
+          <li class="misi-item">
+            <span class="misi-num">5</span>
+            <span>Mendukung <strong>layanan pendidikan yang inklusif</strong> bagi peserta didik.</span>
+          </li>
+        </ul>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Struktur Kurikulum: Ekstrakurikuler &amp; Pembiasaan / </span>
+            <span class="lang-en">Curriculum Architecture: Extracurricular &amp; Character Habits</span>
+          </h2>
+        </div>
+
+        <p class="lead-p">
+          <span class="lang-id">Dalam sistem desain portal <code>https:/inklusi.sddewisartika.sch.id/</code>, seluruh program kurikulum dipetakan ke dalam komponen kartu informasi terstruktur dengan ikon Lucide standar (<code>24×24px</code>, garis <code>1.75px</code>) agar mudah dipindai oleh orang tua calon siswa.</span>
+          <span class="lang-en">Within the <code>https:/inklusi.sddewisartika.sch.id/</code> design system, curriculum programs are structured into scannable UI cards paired with standardized Lucide icons (<code>24×24px</code>, <code>1.75px</code> stroke).</span>
+        </p>
+
+        <div class="kurikulum-grid">
+          <div class="kur-card">
+            <div class="kur-card-head">
+              <span class="kur-card-title">Program Ekstrakurikuler (4 Pilar Minat)</span>
+              <code class="tok">Extracurricular</code>
+            </div>
+            <div class="pill-tag-grid" style="margin-bottom:8px;">
+              <span class="pill-tag gold">1. Angklung</span>
+              <span class="pill-tag gold">2. Tahfiz</span>
+              <span class="pill-tag gold">3. Literasi</span>
+              <span class="pill-tag gold">4. Koding</span>
+            </div>
+            <p style="font-size:9.8px; color:#475569;">
+              Mengembangkan pelestarian budaya Sunda (<strong>Angklung</strong>), spiritualitas Al-Qur'an (<strong>Tahfiz</strong>), budaya baca-tulis (<strong>Literasi</strong>), serta logika komputasional masa depan (<strong>Koding</strong>).
+            </p>
+          </div>
+
+          <div class="kur-card">
+            <div class="kur-card-head">
+              <span class="kur-card-title">Program Pembiasaan Karakter (5 Rutinitas)</span>
+              <code class="tok">Character Habits</code>
+            </div>
+            <div class="pill-tag-grid" style="margin-bottom:8px;">
+              <span class="pill-tag">1. Upacara bendera</span>
+              <span class="pill-tag">2. Kultum</span>
+              <span class="pill-tag">3. Senam bersama</span>
+              <span class="pill-tag">4. Asmaul husna</span>
+              <span class="pill-tag">5. Literasi</span>
+            </div>
+            <p style="font-size:9.8px; color:#475569;">
+              Membentuk kedisiplinan nasionalisme (<strong>Upacara bendera</strong>), kesehatan jasmani (<strong>Senam bersama</strong>), keimanan (<strong>Kultum &amp; Asmaul husna</strong>), serta kecakapan nalar (<strong>Literasi</strong>).
+            </p>
+          </div>
+        </div>
+
+        <table class="ds-table">
+          <thead>
+            <tr>
+              <th style="width: 24%;">Kategori Kurikulum</th>
+              <th style="width: 24%;">Item Program</th>
+              <th style="width: 22%;">Lucide Icon Token</th>
+              <th style="width: 30%;">Penyelarasan Nilai Visi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ekstrakurikuler</strong></td>
+              <td><strong>Angklung</strong></td>
+              <td><code class="tok">Music</code></td>
+              <td><em>Singer</em> (Terampil/Kreatif) &amp; Kerjasama</td>
+            </tr>
+            <tr>
+              <td><strong>Ekstrakurikuler</strong></td>
+              <td><strong>Tahfiz</strong></td>
+              <td><code class="tok">BookMarked</code></td>
+              <td><em>Bageur</em> &amp; Berlandaskan Iman dan Taqwa</td>
+            </tr>
+            <tr>
+              <td><strong>Ekstrakurikuler &amp; Pembiasaan</strong></td>
+              <td><strong>Literasi</strong></td>
+              <td><code class="tok">BookOpen</code></td>
+              <td><em>Pinter</em> (Cerdas &amp; Berwawasan Luas)</td>
+            </tr>
+            <tr>
+              <td><strong>Ekstrakurikuler</strong></td>
+              <td><strong>Koding</strong></td>
+              <td><code class="tok">Code2</code></td>
+              <td><em>Pinter &amp; Singer</em> (Inovatif &amp; Logis)</td>
+            </tr>
+            <tr>
+              <td><strong>Pembiasaan</strong></td>
+              <td><strong>Upacara bendera</strong></td>
+              <td><code class="tok">Flag</code></td>
+              <td><em>Bener</em> (Disiplin &amp; Cinta Tanah Air)</td>
+            </tr>
+            <tr>
+              <td><strong>Pembiasaan</strong></td>
+              <td><strong>Kultum &amp; Asmaul husna</strong></td>
+              <td><code class="tok">HeartHandshake</code></td>
+              <td><em>Bageur</em> &amp; Keimanan Sehari-hari</td>
+            </tr>
+            <tr>
+              <td><strong>Pembiasaan</strong></td>
+              <td><strong>Senam bersama</strong></td>
+              <td><code class="tok">Activity</code></td>
+              <td><em>Cageur</em> (Sehat Jasmani &amp; Rohani)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sheet-footer">
+        <span>SD Inklusi Dewi Sartika (NPSN: 20219596) • Visi, Misi &amp; Kurikulum Sekolah</span>
+        <span>Page 2 of 6</span>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 3: BRAND IDENTITY & LOGO GOVERNANCE ==================== -->
+    <section class="a4-sheet">
+      <div>
+        <div class="sheet-header">
+          <span><strong>05 • BRAND IDENTITY &amp; LOGO GOVERNANCE (sd_dewi_sartika_logo.png)</strong></span>
+          <span>SD Inklusi Dewi Sartika Bandung • v1.0.0</span>
+        </div>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Tata Kelola Aset Logo Resmi (sd_dewi_sartika_logo.png) / </span>
+            <span class="lang-en">Official Logo Asset Governance (sd_dewi_sartika_logo.png)</span>
+          </h2>
+        </div>
+
+        <p class="lead-p">
+          <span class="lang-id">Seluruh implementasi digital dan cetak wajib menggunakan berkas logo resmi <strong><code>sd_dewi_sartika_logo.png</code></strong> yang menampilkan perisai segi lima biru Yayasan Raden Dewi Sartika dengan tugu obor kuning bertuliskan tahun <code>1884</code>, bunga teratai merah, serta tulisan <code>BANDUNG</code>, dipadukan dengan tipografi identitas <strong>SD Inklusi Dewi Sartika</strong>.</span>
+          <span class="lang-en">All digital and print implementations must reference the canonical logo asset <strong><code>sd_dewi_sartika_logo.png</code></strong> featuring the pentagonal blue shield of Yayasan Raden Dewi Sartika with the golden torch (<code>1884</code>), red lotus, and <code>BANDUNG</code> inscription, paired with <strong>SD Inklusi Dewi Sartika</strong> typography.</span>
+        </p>
+
+        <div class="logo-grid">
+          <div class="logo-card">
+            <div class="logo-stage light">
+              <div class="emblem-slot" data-size="64"></div>
+              <div class="lockup-text">
+                <span class="lockup-main" style="color:#0F172A;">SD INKLUSI DEWI SARTIKA</span>
+                <span class="lockup-sub" style="color:#0077CC;">YAYASAN RADEN DEWI SARTIKA • BANDUNG</span>
+              </div>
+            </div>
+            <div class="logo-meta-title">1. Primary Horizontal Lockup (Navbar &amp; Kop Surat)</div>
+            <div class="logo-meta-desc">Asset: <code>sd_dewi_sartika_logo.png</code> on #FFFFFF / #F8FAFC • Min width: 180px</div>
+          </div>
+
+          <div class="logo-card">
+            <div class="logo-stage tint" style="flex-direction:column; gap:4px;">
+              <div class="emblem-slot" data-size="52"></div>
+              <span class="lockup-main" style="font-size:10px; color:#0F172A;">SD INKLUSI DEWI SARTIKA BANDUNG</span>
+            </div>
+            <div class="logo-meta-title">2. Stacked Institutional Crest (Sertifikat &amp; Sampul)</div>
+            <div class="logo-meta-desc">Centered PNG crest for certificates, banners &amp; official reports • Min width: 120px</div>
+          </div>
+
+          <div class="logo-card">
+            <div class="logo-stage dark">
+              <div class="emblem-slot" data-size="60"></div>
+              <div class="lockup-text">
+                <span class="lockup-main" style="color:#FFFFFF;">SD INKLUSI DEWI SARTIKA</span>
+                <span class="lockup-sub" style="color:#FFC72C;">NPSN 20219596 • KOTA BANDUNG</span>
+              </div>
+            </div>
+            <div class="logo-meta-title">3. Dark Surface Lockup (Footer #0F172A &amp; Hero Dark)</div>
+            <div class="logo-meta-desc">High-contrast pairing on Deep Ink Navy (#0F172A) or Royal Blue (#0077CC)</div>
+          </div>
+
+          <div class="logo-card">
+            <div class="logo-stage gold">
+              <div class="emblem-slot" data-size="60"></div>
+              <div style="font-size:9.3px; color:#0F172A; max-width:140px;">
+                <strong>sd_dewi_sartika_logo.png</strong><br/>
+                High-Res Transparent PNG, Mobile Header (36px), Favicon (16px)
+              </div>
+            </div>
+            <div class="logo-meta-title">4. Standalone Crest Mark &amp; Favicon</div>
+            <div class="logo-meta-desc">Crisp transparent emblem for mobile headers (&lt;140px) &amp; social avatars</div>
+          </div>
+        </div>
+
+        <table class="ds-table">
+          <thead>
+            <tr>
+              <th style="width: 26%;">Elemen Logo</th>
+              <th style="width: 20%;">Warna Token</th>
+              <th style="width: 54%;">Makna Filosofis &amp; Spesifikasi Aset</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Perisai Segi Lima</strong></td>
+              <td><code class="tok">#0077CC</code> / <code class="tok">#0F172A</code></td>
+              <td>Melambangkan nilai Pancasila, perlindungan peserta didik inklusif, serta keluasan wawasan akademik.</td>
+            </tr>
+            <tr>
+              <td><strong>Pita Kuning Yayasan</strong></td>
+              <td><code class="tok">#FFC72C</code> / <code class="tok">#0F172A</code></td>
+              <td>Bertuliskan <em>"YAYASAN RADEN DEWI SARTIKA"</em> sebagai badan penyelenggara pendidikan.</td>
+            </tr>
+            <tr>
+              <td><strong>Tugu Obor Kuning</strong></td>
+              <td><code class="tok">#FFC72C</code></td>
+              <td>Simbol tugu obor pencerahan ilmu pengetahuan dan keteladanan Raden Dewi Sartika.</td>
+            </tr>
+            <tr>
+              <td><strong>Teratai &amp; Api Merah</strong></td>
+              <td><code class="tok">#E53935</code></td>
+              <td>Teratai 5 kelopak (keteguhan budi pekerti Sunda) dan nyala api merah (semangat belajar sepanjang hayat).</td>
+            </tr>
+            <tr>
+              <td><strong>Inskripsi 1884 &amp; BANDUNG</strong></td>
+              <td><code class="tok">#0F172A</code> / <code class="tok">#FFFFFF</code></td>
+              <td>Angka <code>1884</code> pada tugu obor (tahun kelahiran Raden Dewi Sartika) serta identitas <code>BANDUNG</code> pada dasar perisai.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout red">
+          <div class="callout-title">CLEAR SPACE &amp; STRICT PROHIBITIONS / RUANG AMAN &amp; LARANGAN KERAS</div>
+          • <strong>Clear Space (1.0x Flame Rule):</strong> Pertahankan margin kosong minimum sebesar 1,0x tinggi nyala api obor merah di sekeliling <code>sd_dewi_sartika_logo.png</code>.<br/>
+          • <strong>Prohibitions:</strong> Dilarang mengganti berkas <code>sd_dewi_sartika_logo.png</code> dengan ikon generik, dilarang mengubah proporsi perisai, mengubah warna pita atau kelopak teratai, maupun memutar sudut lambang.
+        </div>
+      </div>
+
+      <div class="sheet-footer">
+        <span>SD Inklusi Dewi Sartika (NPSN: 20219596) • Asset Reference: sd_dewi_sartika_logo.png</span>
+        <span>Page 3 of 6</span>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 4: COLOR ARCHITECTURE & CONTRAST ==================== -->
+    <section class="a4-sheet">
+      <div>
+        <div class="sheet-header">
+          <span><strong>06 • COLOR ARCHITECTURE &amp; WCAG 2.1 CONTRAST MATRIX</strong></span>
+          <span>SD Inklusi Dewi Sartika Bandung • v1.0.0</span>
+        </div>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">06</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Sistem Warna &amp; Proporsi 60–30–10 / </span>
+            <span class="lang-en">Color System &amp; 60–30–10 Visual Balance</span>
+          </h2>
+        </div>
+
+        <p class="lead-p">
+          <span class="lang-id">Palet warna diturunkan langsung dari pigmen vektor <code>sd_dewi_sartika_logo.svg</code> dengan aturan keseimbangan visual <strong>60% permukaan putih/alabaster bersih</strong>, <strong>30% struktur Royal Blue &amp; tipografi Deep Navy</strong>, serta <strong>10% aksen Golden Yellow &amp; Vibrant Red</strong>.</span>
+          <span class="lang-en">The color architecture derives directly from <code>sd_dewi_sartika_logo.svg</code> vector pigments governed by the <strong>60–30–10 balance rule</strong>: <strong>60% clean white/alabaster surfaces</strong>, <strong>30% Royal Blue &amp; Deep Navy ink</strong>, and <strong>10% Golden Yellow &amp; Vibrant Red accents</strong>.</span>
+        </p>
+
+        <div class="swatch-grid">
+          <div class="swatch-card">
+            <div class="swatch-fill" style="background:#0077CC; color:#FFFFFF;">
+              <span>PRIMARY</span>
+              <span>#0077CC</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Royal Blue</div>
+              RGB(0, 119, 204)<br/>Buttons, Trust Strip<br/><strong>4.73:1 (AA)</strong>
+            </div>
+          </div>
+
+          <div class="swatch-card">
+            <div class="swatch-fill" style="background:#FFC72C; color:#0F172A;">
+              <span>SECONDARY</span>
+              <span>#FFC72C</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Golden Yellow</div>
+              RGB(255, 199, 44)<br/>Torch Scroll, Badges<br/><strong>12.16:1 (AAA)</strong>
+            </div>
+          </div>
+
+          <div class="swatch-card">
+            <div class="swatch-fill" style="background:#E53935; color:#FFFFFF;">
+              <span>ACCENT</span>
+              <span>#E53935</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Vibrant Red</div>
+              RGB(229, 57, 53)<br/>PPDB Pill, Lotus<br/><strong>4.30:1 (AA Lg)</strong>
+            </div>
+          </div>
+
+          <div class="swatch-card">
+            <div class="swatch-fill" style="background:#0F172A; color:#FFFFFF;">
+              <span>INK DARK</span>
+              <span>#0F172A</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Deep Ink Navy</div>
+              RGB(15, 23, 42)<br/>Headings &amp; Footer<br/><strong>17.85:1 (AAA)</strong>
+            </div>
+          </div>
+
+          <div class="swatch-card">
+            <div class="swatch-fill" style="background:#F8FAFC; color:#0F172A; border-bottom:1px solid #E2E8F0;">
+              <span>SURFACE</span>
+              <span>#F8FAFC</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Clean Alabaster</div>
+              RGB(248, 250, 252)<br/>Page Canvas &amp; Tint<br/><strong>17.07:1 (AAA)</strong>
+            </div>
+          </div>
+        </div>
+
+        <table class="ds-table">
+          <thead>
+            <tr>
+              <th style="width: 27%;">W3C Design Token</th>
+              <th style="width: 13%;">Hex</th>
+              <th style="width: 18%;">RGB</th>
+              <th style="width: 25%;">Semantic UI Role</th>
+              <th style="width: 17%;">WCAG 2.1 Ratio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="tok">--color-brand-primary-500</code></td>
+              <td><strong>#0077CC</strong></td>
+              <td>rgb(0, 119, 204)</td>
+              <td>Primary CTA buttons, links, active nav, trust strip</td>
+              <td>White: <strong>4.73:1 (AA)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-brand-primary-700</code></td>
+              <td><strong>#004D87</strong></td>
+              <td>rgb(0, 77, 135)</td>
+              <td>Button hover/pressed state &amp; section subheaders</td>
+              <td>White: <strong>8.68:1 (AAA)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-brand-primary-50</code></td>
+              <td><strong>#F0F8FF</strong></td>
+              <td>rgb(240, 248, 255)</td>
+              <td>Hero section backdrop &amp; informational callout tint</td>
+              <td>Navy: <strong>16.73:1 (AAA)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-brand-secondary-500</code></td>
+              <td><strong>#FFC72C</strong></td>
+              <td>rgb(255, 199, 44)</td>
+              <td>Secondary CTAs, Torch emblem accent, extracurricular pills</td>
+              <td>Navy: <strong>12.16:1 (AAA)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-brand-secondary-50</code></td>
+              <td><strong>#FFFBEB</strong></td>
+              <td>rgb(255, 251, 235)</td>
+              <td>Visi highlight box &amp; PPDB conversion banner</td>
+              <td>Navy: <strong>17.24:1 (AAA)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-brand-accent-500</code></td>
+              <td><strong>#E53935</strong></td>
+              <td>rgb(229, 57, 53)</td>
+              <td>Urgent "PPDB Online" CTA pill &amp; lotus/flame accent</td>
+              <td>White: <strong>4.30:1 (AA Lg)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-neutral-white</code></td>
+              <td><strong>#FFFFFF</strong></td>
+              <td>rgb(255, 255, 255)</td>
+              <td>Card surfaces, sticky header, modal dialogs</td>
+              <td>Base Light Canvas</td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-neutral-surface</code></td>
+              <td><strong>#F8FAFC</strong></td>
+              <td>rgb(248, 250, 252)</td>
+              <td>Alternating page sections (clean school facade)</td>
+              <td>Navy: <strong>17.07:1 (AAA)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-neutral-body</code></td>
+              <td><strong>#334155</strong></td>
+              <td>rgb(51, 65, 85)</td>
+              <td>Body paragraphs, Visi-Misi text, table descriptions</td>
+              <td>White: <strong>10.35:1 (AAA)</strong></td>
+            </tr>
+            <tr>
+              <td><code class="tok">--color-neutral-ink</code></td>
+              <td><strong>#0F172A</strong></td>
+              <td>rgb(15, 23, 42)</td>
+              <td>Display headings H1–H3 &amp; institutional footer surface</td>
+              <td>White: <strong>17.85:1 (AAA)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout gold">
+          <div class="callout-title">MANDATORY INCLUSIVE ACCESSIBILITY CONTRAST RULE</div>
+          <span class="lang-id"><strong>Larangan Teks Putih di atas Kuning:</strong> Sebagai sekolah penyelenggara layanan pendidikan inklusif, dilarang keras menempatkan teks <code>#FFFFFF</code> di atas latar <code>#FFC72C</code> karena rasio kontrasnya hanya <strong>1,56:1</strong> (Gagal WCAG). Selalu gunakan teks gelap <code>#0F172A</code> di atas <code>#FFC72C</code> (<strong>12,16:1 AAA</strong>).</span>
+          <span class="lang-en"><strong>Forbid White Text on Golden Yellow:</strong> As an inclusive education provider, never place <code>#FFFFFF</code> text on <code>#FFC72C</code> surfaces (contrast ratio is only <strong>1.56:1</strong> — WCAG Fail). Always pair <code>#FFC72C</code> with Deep Ink Navy <code>#0F172A</code> text (<strong>12.16:1 AAA</strong>).</span>
+        </div>
+      </div>
+
+      <div class="sheet-footer">
+        <span>SD Inklusi Dewi Sartika (NPSN: 20219596) • W3C WCAG 2.1 Level AA/AAA Verified Color Matrix</span>
+        <span>Page 4 of 6</span>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 5: TYPOGRAPHY & WEBSITE ANATOMY ==================== -->
+    <section class="a4-sheet">
+      <div>
+        <div class="sheet-header">
+          <span><strong>07 • TYPOGRAPHY SCALE &amp; WEBSITE COMPONENT LIBRARY</strong></span>
+          <span>https:/inklusi.sddewisartika.sch.id/</span>
+        </div>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">07</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Hierarki Tipografi Modular (1.250 Major Third) / </span>
+            <span class="lang-en">Modular Typography Hierarchy (1.250 Major Third)</span>
+          </h2>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta"><strong>Display Hero</strong>Montserrat 800 • 48px / 1.15</div>
+          <div style="font-family:var(--font-heading); font-weight:800; font-size:19.5px; color:#0077CC; letter-spacing:-0.02em;">SD Inklusi Dewi Sartika Bandung</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>Heading 1 (H1)</strong>Montserrat 700 • 36px / 1.20</div>
+          <div style="font-family:var(--font-heading); font-weight:700; font-size:16.5px; color:#0F172A; letter-spacing:-0.015em;">Cageur, Bageur, Bener, Pinter, tur Singer</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>Heading 2 (H2)</strong>Montserrat 700 • 28px / 1.25</div>
+          <div style="font-family:var(--font-heading); font-weight:700; font-size:14.5px; color:#0F172A;">Program Ekstrakurikuler &amp; Pembiasaan Karakter</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>Body Default</strong>Inter 400 • 16px / 1.60</div>
+          <div style="font-family:var(--font-body); font-weight:400; font-size:11px; color:#334155;">Jl. Kautamaan Istri No. 12, Kel. Balong Gede, Kec. Regol, Kota Bandung • NPSN: 20219596 • Telp: 022-4214290.</div>
+        </div>
+        <div class="type-row" style="border-bottom:none;">
+          <div class="type-meta"><strong>UI Overline / Pill</strong>Inter 700 • 12px / +0.06em</div>
+          <div style="font-family:var(--font-body); font-weight:700; font-size:9.8px; color:#E53935; letter-spacing:0.06em; text-transform:uppercase;">LAYANAN PENDIDIKAN INKLUSIF • PENERIMAAN PESERTA DIDIK BARU</div>
+        </div>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">08</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Anatomi Halaman Website &amp; Komponen Atomik / </span>
+            <span class="lang-en">Website Page Anatomy &amp; Atomic Components</span>
+          </h2>
+        </div>
+
+        <!-- Visual Wireframe Blueprint -->
+        <div class="wireframe-box">
+          <div class="wf-nav">
+            <div style="display:flex; align-items:center; gap:6px; font-weight:700; color:#0F172A;">
+              <div class="emblem-slot" data-size="22"></div>
+              <span>SD Inklusi Dewi Sartika</span>
+            </div>
+            <div style="display:flex; gap:9px; align-items:center; color:#334155;">
+              <span style="color:#0077CC; font-weight:700;">Beranda</span>
+              <span>Profil &amp; Visi Misi</span>
+              <span>Kurikulum</span>
+              <span>Inklusi</span>
+              <span style="background:#E53935; color:#FFFFFF; padding:2px 8px; border-radius:999px; font-weight:700; font-size:8.8px;">PPDB Online</span>
+            </div>
+          </div>
+          <div class="wf-hero">
+            <div>
+              <div style="font-size:8.2px; font-weight:700; color:#0077CC; margin-bottom:2px;">NPSN: 20219596 • YAYASAN RADEN DEWI SARTIKA</div>
+              <div style="font-family:var(--font-heading); font-weight:800; font-size:12.5px; color:#0F172A; line-height:1.2; margin-bottom:5px;">Prestasi Pembelajaran Cageur, Bageur, Bener, Pinter, tur Singer</div>
+              <div style="display:flex; gap:6px;">
+                <span style="background:#0077CC; color:#FFFFFF; padding:3px 9px; border-radius:999px; font-size:8.2px; font-weight:700;">Daftar PPDB</span>
+                <span style="background:#FFC72C; color:#0F172A; padding:3px 9px; border-radius:999px; font-size:8.2px; font-weight:700;">Layanan Inklusi</span>
+              </div>
+            </div>
+            <div style="background:#FFFFFF; border:1px solid #BAE2FD; border-radius:8px; padding:7px; text-align:center; font-size:8.2px; color:#004D87;">
+              <strong>SD Inklusi Dewi Sartika Bandung</strong><br/>Jl. Kautamaan Istri No. 12, Balong Gede, Regol<br/>Telp: 022-4214290
+            </div>
+          </div>
+          <div class="wf-trust">
+            <div>NPSN 20219596<br/><span style="font-weight:400; font-size:7.8px; color:#E0F1FE;">Terdaftar Resmi</span></div>
+            <div>Sekolah Inklusi<br/><span style="font-weight:400; font-size:7.8px; color:#E0F1FE;">Ramah Semua Anak</span></div>
+            <div>4 Ekstrakurikuler<br/><span style="font-weight:400; font-size:7.8px; color:#E0F1FE;">Angklung, Tahfiz, Literasi, Koding</span></div>
+            <div>5 Pembiasaan<br/><span style="font-weight:400; font-size:7.8px; color:#E0F1FE;">Upacara, Kultum, Senam, Asmaul Husna, Literasi</span></div>
+          </div>
+          <div class="wf-cards">
+            <div class="wf-card-item"><strong>Visi &amp; Misi</strong><br/><span style="color:#64748B;">Cageur, Bageur, Bener, Pinter, Singer</span></div>
+            <div class="wf-card-item"><strong>Ekstrakurikuler</strong><br/><span style="color:#64748B;">Angklung • Tahfiz • Literasi • Koding</span></div>
+            <div class="wf-card-item"><strong>Pembiasaan Harian</strong><br/><span style="color:#64748B;">Upacara • Kultum • Senam • Asmaul Husna</span></div>
+          </div>
+          <div class="wf-footer">
+            <span><strong>SD Inklusi Dewi Sartika</strong> (Status: Swasta • NPSN: 20219596)</span>
+            <span style="color:#FFC72C;">Jl. Kautamaan Istri No. 12, Bandung • 022-4214290</span>
+          </div>
+        </div>
+
+        <table class="ds-table">
+          <thead>
+            <tr>
+              <th style="width: 24%;">Component</th>
+              <th style="width: 13%;">Level</th>
+              <th style="width: 35%;">Visual &amp; Token Specification</th>
+              <th style="width: 28%;">Interactive States &amp; Rules</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Primary CTA Button</strong></td>
+              <td>Atom</td>
+              <td>Fill <code class="tok">#0077CC</code>, Text <code class="tok">#FFFFFF</code> (Inter 600, 15px), Radius <code class="tok">9999px</code>, Height 44px</td>
+              <td>Hover: <code class="tok">#004D87</code> + <code>translateY(-1px)</code>; Focus: 4px ring <code class="tok">#BAE2FD</code></td>
+            </tr>
+            <tr>
+              <td><strong>Curriculum &amp; Habit Card</strong></td>
+              <td>Molecule</td>
+              <td>Surface <code class="tok">#FFFFFF</code>, Border 1px <code class="tok">#E2E8F0</code>, Radius 16px, Padding 24px, Icon Badge <code class="tok">#FFFBEB</code></td>
+              <td>Displays Angklung, Tahfiz, Literasi, Koding &amp; 5 daily character habits</td>
+            </tr>
+            <tr>
+              <td><strong>Sticky Glass Navbar</strong></td>
+              <td>Organism</td>
+              <td>Height 72px, <code>rgba(255,255,255,0.92)</code> + <code>backdrop-blur(12px)</code>, <code>sd_dewi_sartika_logo.png</code></td>
+              <td>Active link <code class="tok">#0077CC</code>; right-aligned red PPDB pill</td>
+            </tr>
+            <tr>
+              <td><strong>Institutional Footer</strong></td>
+              <td>Organism</td>
+              <td>Surface <code class="tok">#0F172A</code>, Text <code class="tok">#E2E8F0</code>, Highlight <code class="tok">#FFC72C</code>, 4-column desktop grid</td>
+              <td>Shows NPSN <code>20219596</code>, address Kel. Balong Gede, Regol &amp; telp <code>022-4214290</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sheet-footer">
+        <span>SD Inklusi Dewi Sartika (NPSN: 20219596) • Typography &amp; Atomic Component Architecture</span>
+        <span>Page 5 of 6</span>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 6: CONFIGURATION CODE & AGENTIC AI PROTOCOL ==================== -->
+    <section class="a4-sheet">
+      <div>
+        <div class="sheet-header">
+          <span><strong>09 • PRODUCTION CONFIGURATION CODE &amp; AGENTIC AI TOKENS</strong></span>
+          <span>SD Inklusi Dewi Sartika Bandung • v1.0.0</span>
+        </div>
+
+        <div class="sec-title-bar">
+          <span class="sec-num">09</span>
+          <h2 class="sec-title">
+            <span class="lang-id">Kode Konfigurasi Produksi &amp; Protokol Agentic AI / </span>
+            <span class="lang-en">Production Configuration Code &amp; Agentic AI Protocol</span>
+          </h2>
+        </div>
+
+        <div class="code-label">
+          <span>9.1 tailwind.config.ts (Tailwind CSS Theme Extension)</span>
+          <button class="copy-mini-btn" onclick="copyCode('code-tailwind')">Copy Config</button>
+        </div>
+        <pre id="code-tailwind" class="code-panel">import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          primary: { 50: "#F0F8FF", 200: "#BAE2FD", 500: "#0077CC", 700: "#004D87", 900: "#00294A" },
+          secondary: { 50: "#FFFBEB", 200: "#FDE68A", 500: "#FFC72C", 700: "#B47804" },
+          accent: { 50: "#FEF2F2", 500: "#E53935", 700: "#991B1B" },
+        },
+        neutral: {
+          white: "#FFFFFF", surface: "#F8FAFC", border: "#E2E8F0",
+          muted: "#64748B", body: "#334155", ink: "#0F172A",
+        },
+      },
+      fontFamily: {
+        heading: ["Montserrat", "Poppins", "Segoe UI", "sans-serif"],
+        sans: ["Inter", "Open Sans", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+      },
+      maxWidth: { container: "1280px" },
+      borderRadius: { sm: "6px", md: "10px", lg: "16px", xl: "24px", pill: "9999px" },
+      boxShadow: {
+        "brand-sm": "0 2px 8px rgba(15, 23, 42, 0.05)",
+        "brand-md": "0 8px 24px -4px rgba(0, 119, 204, 0.10)",
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;</pre>
+
+        <div class="code-label">
+          <span>9.2 tokens.css (W3C CSS Custom Properties)</span>
+          <button class="copy-mini-btn" onclick="copyCode('code-css')">Copy CSS</button>
+        </div>
+        <pre id="code-css" class="code-panel">:root {
+  --color-brand-primary-50: #F0F8FF;   --color-brand-primary-200: #BAE2FD;
+  --color-brand-primary-500: #0077CC;  --color-brand-primary-700: #004D87;
+  --color-brand-secondary-50: #FFFBEB; --color-brand-secondary-500: #FFC72C;
+  --color-brand-accent-500: #E53935;   --color-neutral-white: #FFFFFF;
+  --color-neutral-surface: #F8FAFC;    --color-neutral-border: #E2E8F0;
+  --color-neutral-body: #334155;       --color-neutral-ink: #0F172A;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --container-max-width: 1280px;
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-pill: 9999px;
+}</pre>
+
+        <div class="code-label">
+          <span>9.3 design-tokens.w3c.json (W3C DTCG v1.0 Schema, School Identity &amp; Agentic AI Input)</span>
+          <button class="copy-mini-btn" onclick="copyCode('code-json')">Copy JSON</button>
+        </div>
+        <pre id="code-json" class="code-panel">{
+  "$schema": "https://tr.designtokens.org/format/",
+  "meta": {
+    "name": "SD Inklusi Dewi Sartika Bandung Design System",
+    "version": "1.0.0",
+    "sourceUrl": "https:/inklusi.sddewisartika.sch.id/",
+    "logoAsset": "sd_dewi_sartika_logo.png"
+  },
+  "schoolIdentity": {
+    "namaSekolah": "SD Inklusi Dewi Sartika",
+    "npsn": "20219596",
+    "status": "Swasta",
+    "yayasan": "Yayasan Raden Dewi Sartika",
+    "alamat": "Jl. Kautamaan Istri No. 12, Kelurahan Balong Gede, Kecamatan Regol, Kota Bandung, Jawa Barat",
+    "nomorTelepon": "022-4214290",
+    "visi": "Tercapainya prestasi pembelajaran yang Cageur, Bageur, Bener, Pinter, tur Singer serta suka bekerjasama berlandaskan iman dan taqwa.",
+    "misi": [
+      "Menyelenggarakan proses pembelajaran yang aktif, inovatif, dan berprestasi.",
+      "Menanamkan nilai karakter dan budi pekerti luhur (Cageur, Bageur, Bener, Pinter, Singer).",
+      "Membiasakan sikap gotong royong dan kerjasama.",
+      "Membangun landasan keimanan dan ketakwaan kepada Tuhan Yang Maha Esa dalam kehidupan sehari-hari.",
+      "Mendukung layanan pendidikan yang inklusif bagi peserta didik."
+    ],
+    "kurikulum": {
+      "ekstrakurikuler": ["Angklung", "Tahfiz", "Literasi", "Koding"],
+      "pembiasaan": ["Upacara bendera", "Kultum", "Senam bersama", "Asmaul husna", "Literasi"]
+    }
+  },
+  "tokens": {
+    "color": {
+      "primary": { "$type": "color", "$value": "#0077CC" },
+      "secondaryGold": { "$type": "color", "$value": "#FFC72C" },
+      "accentRed": { "$type": "color", "$value": "#E53935" },
+      "surfaceAlabaster": { "$type": "color", "$value": "#F8FAFC" },
+      "inkDark": { "$type": "color", "$value": "#0F172A" }
+    }
+  },
+  "agenticGuardrails": [
+    "Always refer to the institution as 'SD Inklusi Dewi Sartika' (NPSN: 20219596, Status: Swasta) and use 'sd_dewi_sartika_logo.png'.",
+    "Enforce 60-30-10 balance: 60% #FFFFFF/#F8FAFC, 30% #0077CC/#0F172A, 10% #FFC72C/#E53935.",
+    "NEVER place #FFFFFF text on #FFC72C (1.56:1 fail). Always use #0F172A ink on #FFC72C (12.16:1 AAA)."
+  ]
+}</pre>
+      </div>
+
+      <div class="sheet-footer">
+        <span>SD Inklusi Dewi Sartika (NPSN: 20219596) • W3C DTCG v1.0 &amp; Agentic AI Configuration</span>
+        <span>Page 6 of 6</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ------------------------------------------------------------------------
+    // 1. HYDRATE ALL EMBLEM SLOTS USING "sd_dewi_sartika_logo.png" WITH VECTOR FALLBACK
+    // ------------------------------------------------------------------------
+    function getMasterSvgDataUri() {
+      const masterSvg = document.getElementById('master-emblem-svg');
+      const clone = masterSvg.cloneNode(true);
+      clone.style.display = 'block';
+      const svgData = new XMLSerializer().serializeToString(clone);
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData);
+    }
+
+    function hydrateEmblems() {
+      const fallbackDataUri = getMasterSvgDataUri();
+      const slots = document.querySelectorAll('.emblem-slot');
+      slots.forEach((slot) => {
+        const size = slot.getAttribute('data-size') || '64';
+        const img = document.createElement('img');
+        img.src = 'sd_dewi_sartika_logo.png';
+        img.alt = 'Logo SD Inklusi Dewi Sartika';
+        img.className = 'emblem-img';
+        img.style.width = size + 'px';
+        img.style.height = size + 'px';
+        img.onerror = function () {
+          this.onerror = null;
+          this.src = fallbackDataUri;
+        };
+        slot.innerHTML = '';
+        slot.appendChild(img);
+      });
+    }
+
+    // ------------------------------------------------------------------------
+    // 2. LANGUAGE MODE SWITCHER, TOAST NOTIFICATION & CLIPBOARD COPY
+    // ------------------------------------------------------------------------
+    let toastTimer = null;
+
+    function showToast(message) {
+      const toast = document.getElementById('status-toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+
+    function setLangMode(mode, btn) {
+      document.body.classList.remove('mode-en', 'mode-id');
+      if (mode === 'en') {
+        document.body.classList.add('mode-en');
+      } else if (mode === 'id') {
+        document.body.classList.add('mode-id');
+      }
+
+      document.querySelectorAll('.lang-btn').forEach((el) => {
+        el.classList.remove('active');
+      });
+      if (btn) btn.classList.add('active');
+
+      const labels = {
+        both: 'Mode tampilan Bilingual (Indonesia & English) aktif.',
+        id: 'Mode tampilan Bahasa Indonesia aktif.',
+        en: 'English display mode activated.'
+      };
+      showToast(labels[mode] || labels.both);
+    }
+
+    function copyCode(elementId) {
+      const codeEl = document.getElementById(elementId);
+      if (!codeEl) return;
+      const textToCopy = codeEl.innerText;
+
+      const tempArea = document.createElement('textarea');
+      tempArea.value = textToCopy;
+      tempArea.style.position = 'fixed';
+      tempArea.style.left = '-9999px';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Kode konfigurasi berhasil disalin ke clipboard!');
+      } catch (err) {
+        showToast('Gagal menyalin kode. Silakan salin secara manual.');
+      }
+      document.body.removeChild(tempArea);
+    }
+
+    // ------------------------------------------------------------------------
+    // 3. RASTERIZE "sd_dewi_sartika_logo.png" (OR VECTOR BACKUP) TO PNG BYTES FOR .DOCX
+    // ------------------------------------------------------------------------
+    function rasterizeUrlToPngBytes(url, pxSize) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function () {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = pxSize;
+            canvas.height = pxSize;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, pxSize, pxSize);
+            canvas.toBlob(async (blob) => {
+              if (!blob) return reject(new Error('Canvas toBlob failed'));
+              const buf = await blob.arrayBuffer();
+              resolve(new Uint8Array(buf));
+            }, 'image/png');
+          } catch (err) {
+            reject(err);
+          }
+        };
+        img.onerror = (e) => reject(e);
+        img.src = url;
+      });
+    }
+
+    async function getEmblemPngBytes(pxSize = 360) {
+      try {
+        return await rasterizeUrlToPngBytes('sd_dewi_sartika_logo.png', pxSize);
+      } catch (_) {
+        const masterSvg = document.getElementById('master-emblem-svg');
+        const clone = masterSvg.cloneNode(true);
+        clone.style.display = 'block';
+        clone.setAttribute('width', String(pxSize));
+        clone.setAttribute('height', String(pxSize));
+        const svgData = new XMLSerializer().serializeToString(clone);
+        const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+        const blobUrl = URL.createObjectURL(svgBlob);
+        try {
+          return await rasterizeUrlToPngBytes(blobUrl, pxSize);
+        } finally {
+          URL.revokeObjectURL(blobUrl);
+        }
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // 4. EXPORT NATIVE .PDF VIA PRINT COMPILER
+    // ------------------------------------------------------------------------
+    function exportPdf() {
+      showToast('Membuka kompilator PDF A4 — pilih "Save as PDF" pada dialog cetak...');
+      setTimeout(() => {
+        window.print();
+      }, 300);
+    }
+
+    // ------------------------------------------------------------------------
+    // 5. COMPILE & DOWNLOAD REAL .DOCX FILE (ENGLISH OR INDONESIAN)
+    // ------------------------------------------------------------------------
+    async function exportDocx(lang) {
+      const isID = lang === 'ID';
+      const fileName = isID
+        ? 'SD_Inklusi_Dewi_Sartika_Design_System_Guideline_ID.docx'
+        : 'SD_Inklusi_Dewi_Sartika_Design_System_Guideline_EN.docx';
+
+      showToast(isID
+        ? 'Mengompilasi dokumen Word (.docx) Bahasa Indonesia...'
+        : 'Compiling English Word (.docx) Design System document...');
+
+      try {
+        if (!window.docx) {
+          throw new Error('DOCX library unavailable');
+        }
+        const {
+          Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
+          WidthType, ShadingType, AlignmentType, BorderStyle, ImageRun
+        } = window.docx;
+
+        const emblemBytes = await getEmblemPngBytes(320);
+
+        const makeCell = (text, opts = {}) => {
+          const {
+            bold = false,
+            color = '334155',
+            bg = null,
+            size = 19,
+            font = 'Segoe UI',
+            widthPct = null,
+            align = AlignmentType.LEFT
+          } = opts;
+
+          return new TableCell({
+            width: widthPct ? { size: widthPct, type: WidthType.PERCENTAGE } : undefined,
+            shading: bg ? { fill: bg, type: ShadingType.CLEAR } : undefined,
+            margins: { top: 90, bottom: 90, left: 125, right: 125 },
+            children: [
+              new Paragraph({
+                alignment: align,
+                spacing: { before: 0, after: 0 },
+                children: [
+                  new TextRun({
+                    text: String(text),
+                    bold,
+                    color,
+                    size,
+                    font
+                  })
+                ]
+              })
+            ]
+          });
+        };
+
+        const makeStyledTable = (headers, rows, widths) => {
+          return new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [
+              new TableRow({
+                tableHeader: true,
+                children: headers.map((h, i) =>
+                  makeCell(h, {
+                    bold: true,
+                    color: 'FFFFFF',
+                    bg: '0077CC',
+                    size: 19,
+                    widthPct: widths ? widths[i] : undefined
+                  })
+                )
+              }),
+              ...rows.map((r, rIdx) =>
+                new TableRow({
+                  children: r.map((val, cIdx) =>
+                    makeCell(val, {
+                      bold: cIdx === 0,
+                      color: cIdx === 0 ? '0F172A' : '334155',
+                      bg: rIdx % 2 === 0 ? 'FFFFFF' : 'F8FAFC',
+                      size: 18,
+                      font: (String(val).startsWith('#') || String(val).startsWith('--')) ? 'Consolas' : 'Segoe UI',
+                      widthPct: widths ? widths[cIdx] : undefined
+                    })
+                  )
+                })
+              )
+            ]
+          });
+        };
+
+        const makeSectionHeading = (num, title) =>
+          new Paragraph({
+            spacing: { before: 260, after: 90 },
+            border: {
+              bottom: { color: '0077CC', space: 4, style: BorderStyle.SINGLE, size: 12 }
+            },
+            children: [
+              new TextRun({ text: `${num}  `, bold: true, color: '0077CC', size: 25, font: 'Segoe UI' }),
+              new TextRun({ text: title, bold: true, color: '0F172A', size: 25, font: 'Segoe UI' })
+            ]
+          });
+
+        const makeBodyPara = (text, opts = {}) =>
+          new Paragraph({
+            spacing: { before: 0, after: 100 },
+            children: [
+              new TextRun({
+                text,
+                bold: opts.bold || false,
+                italics: opts.italics || false,
+                color: opts.color || '334155',
+                size: opts.size || 20,
+                font: 'Segoe UI'
+              })
+            ]
+          });
+
+        const makeCodeBlock = (title, codeText) => [
+          new Paragraph({
+            spacing: { before: 140, after: 50 },
+            children: [new TextRun({ text: title, bold: true, color: '004D87', size: 20, font: 'Segoe UI' })]
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [
+              new TableRow({
+                children: [
+                  new TableCell({
+                    shading: { fill: '0F172A', type: ShadingType.CLEAR },
+                    margins: { top: 130, bottom: 130, left: 150, right: 150 },
+                    children: codeText.split('\n').map(
+                      (line) =>
+                        new Paragraph({
+                          spacing: { before: 0, after: 18 },
+                          children: [
+                            new TextRun({
+                              text: line || ' ',
+                              color: 'E2E8F0',
+                              size: 16,
+                              font: 'Consolas'
+                            })
+                          ]
+                        })
+                    )
+                  })
+                ]
+              })
+            ]
+          })
+        ];
+
+        // Cover Banner Table with Embedded Official Logo (sd_dewi_sartika_logo.png)
+        const coverTable = new Table({
+          width: { size: 100, type: WidthType.PERCENTAGE },
+          rows: [
+            new TableRow({
+              children: [
+                new TableCell({
+                  width: { size: 74, type: WidthType.PERCENTAGE },
+                  shading: { fill: '0077CC', type: ShadingType.CLEAR },
+                  margins: { top: 240, bottom: 220, left: 200, right: 150 },
+                  children: [
+                    new Paragraph({
+                      spacing: { after: 70 },
+                      children: [
+                        new TextRun({
+                          text: isID
+                            ? 'DOKUMEN SISTEM DESAIN & PANDUAN VISUAL RESMI • v1.0.0'
+                            : 'OFFICIAL DESIGN SYSTEM & VISUAL GUIDELINES • v1.0.0',
+                          bold: true,
+                          color: 'FFC72C',
+                          size: 18,
+                          font: 'Segoe UI'
+                        })
+                      ]
+                    }),
+                    new Paragraph({
+                      spacing: { after: 90 },
+                      children: [
+                        new TextRun({
+                          text: isID
+                            ? 'SD Inklusi Dewi Sartika Bandung\nDesign System & Panduan Merek'
+                            : 'SD Inklusi Dewi Sartika Bandung\nDesign System & Brand Guideline',
+                          bold: true,
+                          color: 'FFFFFF',
+                          size: 38,
+                          font: 'Segoe UI'
+                        })
+                      ]
+                    }),
+                    new Paragraph({
+                      spacing: { after: 0 },
+                      children: [
+                        new TextRun({
+                          text: 'NPSN: 20219596 • Status: Swasta • Yayasan Raden Dewi Sartika\nJl. Kautamaan Istri No. 12, Kel. Balong Gede, Kec. Regol, Kota Bandung, Jawa Barat • Telp: 022-4214290',
+                          color: 'E0F1FE',
+                          size: 18,
+                          font: 'Segoe UI'
+                        })
+                      ]
+                    })
+                  ]
+                }),
+                new TableCell({
+                  width: { size: 26, type: WidthType.PERCENTAGE },
+                  shading: { fill: 'FFFFFF', type: ShadingType.CLEAR },
+                  margins: { top: 180, bottom: 160, left: 110, right: 110 },
+                  children: [
+                    new Paragraph({
+                      alignment: AlignmentType.CENTER,
+                      spacing: { after: 50 },
+                      children: [
+                        new ImageRun({
+                          data: emblemBytes,
+                          transformation: { width: 108, height: 108 }
+                        })
+                      ]
+                    }),
+                    new Paragraph({
+                      alignment: AlignmentType.CENTER,
+                      children: [
+                        new TextRun({
+                          text: 'sd_dewi_sartika_logo.png\nYAYASAN RADEN DEWI SARTIKA',
+                          bold: true,
+                          color: '0F172A',
+                          size: 13,
+                          font: 'Segoe UI'
+                        })
+                      ]
+                    })
+                  ]
+                })
+              ]
+            }),
+            new TableRow({
+              children: [
+                new TableCell({
+                  columnSpan: 2,
+                  shading: { fill: 'FFC72C', type: ShadingType.CLEAR },
+                  margins: { top: 55, bottom: 55, left: 200, right: 200 },
+                  children: [
+                    new Paragraph({
+                      children: [
+                        new TextRun({
+                          text: 'STANDARDS: W3C DTCG v1.0  |  WCAG 2.1 LEVEL AA/AAA  |  ATOMIC DESIGN  |  AGENTIC AI READY',
+                          bold: true,
+                          color: '0F172A',
+                          size: 15,
+                          font: 'Segoe UI'
+                        })
+                      ]
+                    })
+                  ]
+                })
+              ]
+            })
+          ]
+        });
+
+        const tailwindSnippet = document.getElementById('code-tailwind').innerText;
+        const cssSnippet = document.getElementById('code-css').innerText;
+        const jsonSnippet = document.getElementById('code-json').innerText;
+
+        const doc = new Document({
+          sections: [
+            {
+              properties: {
+                page: {
+                  margin: { top: 950, right: 950, bottom: 950, left: 950 }
+                }
+              },
+              children: [
+                coverTable,
+                makeSectionHeading(
+                  '01',
+                  isID ? 'Identitas Sekolah & Kontrol Dokumen' : 'Official School Identity & Document Control'
+                ),
+                makeStyledTable(
+                  isID ? ['Atribut / Parameter', 'Data Resmi Terverifikasi'] : ['Attribute / Parameter', 'Verified Official Data'],
+                  [
+                    ['Nama Sekolah', 'SD Inklusi Dewi Sartika'],
+                    ['NPSN', '20219596'],
+                    ['Status', 'Swasta (Layanan Pendidikan Inklusif)'],
+                    ['Alamat', 'Jl. Kautamaan Istri No. 12, Kelurahan Balong Gede, Kecamatan Regol, Kota Bandung, Jawa Barat'],
+                    ['Nomor Telepon', '022-4214290'],
+                    ['Portal Web Resmi', 'https:/inklusi.sddewisartika.sch.id/'],
+                    ['Aset Logo Resmi', 'sd_dewi_sartika_logo.png (Yayasan Raden Dewi Sartika)']
+                  ],
+                  [32, 68]
+                ),
+
+                makeSectionHeading(
+                  '02',
+                  isID ? 'Visi, Misi & Struktur Kurikulum' : 'Vision, Mission & Curriculum Structure'
+                ),
+                makeBodyPara(
+                  isID
+                    ? 'VISI: "Tercapainya prestasi pembelajaran yang Cageur, Bageur, Bener, Pinter, tur Singer serta suka bekerjasama berlandaskan iman dan taqwa."'
+                    : 'VISION: "Tercapainya prestasi pembelajaran yang Cageur, Bageur, Bener, Pinter, tur Singer serta suka bekerjasama berlandaskan iman dan taqwa."',
+                  { bold: true, italics: true, color: '0F172A', size: 21 }
+                ),
+                makeStyledTable(
+                  isID ? ['No', 'Misi SD Inklusi Dewi Sartika'] : ['No', 'Mission Statement of SD Inklusi Dewi Sartika'],
+                  [
+                    ['1', 'Menyelenggarakan proses pembelajaran yang aktif, inovatif, dan berprestasi.'],
+                    ['2', 'Menanamkan nilai karakter dan budi pekerti luhur (Cageur, Bageur, Bener, Pinter, Singer).'],
+                    ['3', 'Membiasakan sikap gotong royong dan kerjasama.'],
+                    ['4', 'Membangun landasan keimanan dan ketakwaan kepada Tuhan Yang Maha Esa dalam kehidupan sehari-hari.'],
+                    ['5', 'Mendukung layanan pendidikan yang inklusif bagi peserta didik.']
+                  ],
+                  [10, 90]
+                ),
+                makeStyledTable(
+                  isID ? ['Komponen Kurikulum', 'Daftar Program Resmi'] : ['Curriculum Component', 'Official Program List'],
+                  [
+                    ['Ekstrakurikuler', '1. Angklung   |   2. Tahfiz   |   3. Literasi   |   4. Koding'],
+                    ['Pembiasaan', '1. Upacara bendera   |   2. Kultum   |   3. Senam bersama   |   4. Asmaul husna   |   5. Literasi']
+                  ],
+                  [30, 70]
+                ),
+
+                makeSectionHeading(
+                  '03',
+                  isID ? 'Tata Kelola Aset Logo (sd_dewi_sartika_logo.png)' : 'Logo Asset Governance (sd_dewi_sartika_logo.png)'
+                ),
+                makeStyledTable(
+                  isID
+                    ? ['Elemen Lambang', 'Warna Token', 'Makna Historis & Aturan Penggunaan']
+                    : ['Emblem Element', 'Color Token', 'Historical Meaning & Usage Rule'],
+                  [
+                    ['Perisai Segi Lima', '#0077CC / #0F172A', isID ? 'Dasar Pancasila, perlindungan peserta didik inklusif & wawasan akademik.' : 'Pancasila foundation, inclusive student protection & academic breadth.'],
+                    ['Pita Yayasan', '#FFC72C / #0F172A', 'YAYASAN RADEN DEWI SARTIKA — Badan penyelenggara pendidikan.'],
+                    ['Tugu Obor Kuning', '#FFC72C', isID ? 'Simbol obor pencerahan ilmu dan keteladanan Raden Dewi Sartika.' : 'Torch of knowledge symbolizing enlightenment and Raden Dewi Sartika\'s legacy.'],
+                    ['Teratai & Api Merah', '#E53935', isID ? 'Teratai 5 kelopak (kesucian budi Sunda) & api keberanian belajar.' : '5-petal lotus (Sundanese character purity) & flame of lifelong learning.'],
+                    ['Inskripsi 1884 & BANDUNG', '#0F172A / #FFFFFF', isID ? 'Tahun kelahiran Raden Dewi Sartika (1884) dan lokasi institusi (BANDUNG).' : 'Birth year of Raden Dewi Sartika (1884) and city location (BANDUNG).']
+                  ],
+                  [26, 22, 52]
+                ),
+
+                makeSectionHeading(
+                  '04',
+                  isID ? 'Sistem Warna & Matriks Kontras WCAG 2.1' : 'Color System & WCAG 2.1 Contrast Matrix'
+                ),
+                makeStyledTable(
+                  isID
+                    ? ['Token Desain', 'Hex', 'Peran Semantik UI', 'Kontras WCAG 2.1']
+                    : ['Design Token', 'Hex', 'Semantic UI Role', 'WCAG 2.1 Contrast'],
+                  [
+                    ['--color-brand-primary-500', '#0077CC', isID ? 'Royal Blue: Tombol utama, link, strip kepercayaan' : 'Royal Blue: Primary buttons, links, trust strip', 'White: 4.73:1 (AA)'],
+                    ['--color-brand-primary-700', '#004D87', isID ? 'Status hover tombol & sub-judul' : 'Button hover state & subheaders', 'White: 8.68:1 (AAA)'],
+                    ['--color-brand-secondary-500', '#FFC72C', isID ? 'Golden Yellow: Obor Ilmu, CTA sekunder, lencana' : 'Golden Yellow: Torch accent, secondary CTA, badges', 'Navy: 12.16:1 (AAA)'],
+                    ['--color-brand-accent-500', '#E53935', isID ? 'Vibrant Red: Pil mendesak PPDB Online & teratai' : 'Vibrant Red: Urgent PPDB Online pill & lotus', 'White: 4.30:1 (AA Lg)'],
+                    ['--color-neutral-surface', '#F8FAFC', isID ? 'Kanvas halaman putih bersih arsitektural' : 'Clean architectural facade page canvas', 'Navy: 17.07:1 (AAA)'],
+                    ['--color-neutral-body', '#334155', isID ? 'Teks paragraf isi & deskripsi tabel' : 'Body copy & table text', 'White: 10.35:1 (AAA)'],
+                    ['--color-neutral-ink', '#0F172A', isID ? 'Judul utama H1–H3 & footer institusional' : 'H1–H3 headings & institutional footer', 'White: 17.85:1 (AAA)']
+                  ],
+                  [28, 14, 38, 20]
+                ),
+
+                makeSectionHeading(
+                  '05',
+                  isID ? 'Tipografi, Grid 12-Kolom & Komponen Website' : 'Typography, 12-Column Grid & Website Components'
+                ),
+                makeStyledTable(
+                  isID
+                    ? ['Komponen / Elemen', 'Spesifikasi Teknis']
+                    : ['Component / Element', 'Technical Specification'],
+                  [
+                    ['Heading Font (Montserrat)', '800 ExtraBold (Hero 48px), 700 Bold (H1 36px, H2 28px), 600 SemiBold (H3 22px)'],
+                    ['Body & UI Font (Inter)', '400 Regular (Lead 18px, Body 16px, Small 14px), 600 SemiBold (Button 15px), 700 Bold (Overline 12px)'],
+                    ['12-Column Grid', 'Max container 1280px, 24px desktop gutter, 16px mobile gutter, 8pt base spacing rhythm'],
+                    ['Lucide Iconography', '24x24px viewBox, 1.75px uniform stroke width, round linecaps'],
+                    ['Portal Sections', 'Sticky Glass Navbar (sd_dewi_sartika_logo.png) -> Hero Visi Misi -> Trust Strip (NPSN 20219596) -> Ekstrakurikuler & Pembiasaan Cards -> Footer (022-4214290)']
+                  ],
+                  [32, 68]
+                ),
+
+                makeSectionHeading(
+                  '06',
+                  isID ? 'Kode Konfigurasi Produksi & Token Agentic AI' : 'Production Configuration Code & Agentic AI Tokens'
+                ),
+                ...makeCodeBlock('6.1 tailwind.config.ts', tailwindSnippet),
+                ...makeCodeBlock('6.2 tokens.css', cssSnippet),
+                ...makeCodeBlock('6.3 design-tokens.w3c.json (W3C DTCG v1.0 & School Identity)', jsonSnippet)
+              ]
+            }
+          ]
+        });
+
+        const blob = await Packer.toBlob(doc);
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(link.href), 2000);
+
+        showToast(isID
+          ? `Berhasil mengunduh ${fileName}!`
+          : `Successfully downloaded ${fileName}!`);
+      } catch (err) {
+        const contentHtml = document.querySelector('.document-stream').innerHTML;
+        const wordBlob = new Blob(
+          ['\ufeff<html><head><meta charset="utf-8"></head><body>' + contentHtml + '</body></html>'],
+          { type: 'application/msword' }
+        );
+        const fallbackLink = document.createElement('a');
+        fallbackLink.href = URL.createObjectURL(wordBlob);
+        fallbackLink.download = fileName.replace('.docx', '.doc');
+        document.body.appendChild(fallbackLink);
+        fallbackLink.click();
+        document.body.removeChild(fallbackLink);
+        showToast('Dokumen Word berhasil diunduh (mode kompatibilitas).');
+      }
+    }
+
+    // Initialize emblems on page load
+    document.addEventListener('DOMContentLoaded', hydrateEmblems);
+  </script>
+</body>
+</html>
